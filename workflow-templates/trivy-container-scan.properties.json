@@ -1,0 +1,7 @@
+{
+  "name": "Reverb Container Scan",
+  "description": "Reverb container scan workflow for CI",
+  "filePatterns": [
+      "^Dockerfile"
+  ]
+}
