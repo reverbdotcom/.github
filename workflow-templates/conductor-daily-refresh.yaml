@@ -1,0 +1,40 @@
+# source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/conductor-daily-refresh.yaml
+# Generates a workflow using conductor - triggers a deploy daily at 1AM on week days to refresh environments.
+# This workflow will go away in the future, favoring orchestra sandbox. ( ask #dev-platform )
+
+name: "conductor-daily-refresh"
+run-name: "refresh | ${{ github.sha }}"
+
+on:
+  schedule:
+    - cron:  "0 1 * * 1-5" # 1AM every week day
+
+jobs:
+  pre:
+    runs-on:
+      - self-hosted
+      - gen-large
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 1
+      - run: |
+          [ $(git --no-pager log --oneline --since=1.days | wc -l) -gt 0 ] \
+          && echo "hasCommits=true" >> $GITHUB_ENV \
+          || true
+    outputs:
+      hasCommits: ${{ env.hasCommits }}
+  delivery:
+    if: ${{ needs.pre.outputs.hasCommits }}
+    uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
+    needs:
+      - pre
+    strategy:
+      matrix:
+        env:
+          - lab
+          - preprod
+          - qa
+          - sandbox
+    with:
+      env: ${{ matrix.env }}
