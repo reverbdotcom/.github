@@ -1,5 +1,5 @@
 # source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/conductor-on-main.yaml
-# generates a workflow using conductor - triggers continuous delivery on merge to main.
+# Generates a workflow using conductor - triggers continuous delivery on merge to main.
 
 name: "conductor [ $default-branch ]"
 run-name: "<changeme: infra|production> | ${{ github.sha }}"

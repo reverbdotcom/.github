@@ -1,0 +1,25 @@
+# source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/conductor.yaml
+# Generates a workflow using conductor - triggers a deploy on demand.
+# This workflow will go away in the future, favoring orchestra sandbox. ( ask #dev-platform )
+
+name: "conductor"
+run-name: "${{ inputs.env }} | ${{ github.sha }}"
+
+on:
+  workflow_dispatch:
+    inputs:
+      env:
+        required: true
+        type: choice
+        options:
+          - lab
+          - infra
+          - preprod
+          - qa
+          - sandbox
+
+jobs:
+  delivery:
+    uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
+    with:
+      env: ${{ inputs.env }}
