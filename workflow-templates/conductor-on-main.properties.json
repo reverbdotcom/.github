@@ -1,5 +1,5 @@
 {
-    "name": "Reverb - Conductor on Main",
+    "name": "Conductor on Main",
     "description": "Continous delivery on merge to main",
     "iconName": "octicon issue-reopened",
     "categories": [ "deployment" ]

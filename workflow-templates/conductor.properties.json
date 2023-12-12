@@ -1,5 +1,5 @@
 {
-    "name": "Reverb - Conductor Branch Deploy",
+    "name": "Conductor Branch Deploy",
     "description": "Branch Deploys for non production",
     "iconName": "octicon issue-reopened",
     "categories": [ "deployment" ]
