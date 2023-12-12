@@ -1,0 +1,13 @@
+name: "conductor [ $default-branch ]"
+run-name: "infra | ${{ github.sha }}"
+
+on:
+  push:
+    branches:
+      - $default-branch
+
+jobs:
+  delivery:
+    uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
+    with:
+      env: infra
