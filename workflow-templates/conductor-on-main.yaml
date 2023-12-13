@@ -2,7 +2,7 @@
 # Generates a workflow using conductor - triggers continuous delivery on merge to main.
 
 name: "conductor [ $default-branch ]"
-run-name: "<changeme: infra|production> | ${{ github.sha }}"
+run-name: "production | ${{ github.sha }}"
 
 on:
   push:
@@ -13,4 +13,4 @@ jobs:
   delivery:
     uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
     with:
-      env: <changeme: infra|production>
+      env: production

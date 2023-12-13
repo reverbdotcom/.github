@@ -1,0 +1,6 @@
+{
+    "name": "Conductor on Orchestra",
+    "description": "Continous delivery on merge to an orchestra branch",
+    "iconName": "octicon issue-reopened",
+    "categories": [ "deployment" ]
+}

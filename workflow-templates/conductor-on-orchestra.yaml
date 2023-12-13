@@ -1,0 +1,14 @@
+# source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/conductor-on-main.yaml
+# Generates a workflow using conductor - triggers continuous delivery to sandbox on merge to an orchestra branch.
+
+name: "conductor on orchestra"
+run-name: "${{ github.ref_name }} | ${{ github.sha }}"
+
+on:
+  push:
+    branches:
+      - "sandbox-*"
+
+jobs:
+  delivery:
+    uses: reverbdotcom/conductor/.github/workflows/conductor-orchestra.yaml@main
