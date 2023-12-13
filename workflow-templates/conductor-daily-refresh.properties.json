@@ -1,0 +1,6 @@
+{
+    "name": "Conductor Daily Refresh",
+    "description": "Refresh environments for non production",
+    "iconName": "octicon issue-reopened",
+    "categories": [ "deployment" ]
+}
