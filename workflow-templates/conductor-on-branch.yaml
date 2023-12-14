@@ -2,7 +2,7 @@
 # Generates a workflow using conductor - triggers a deploy on demand.
 # This workflow will go away in the future, favoring orchestra sandbox. ( ask #dev-platform )
 
-name: "conductor"
+name: "conductor on branch"
 run-name: "${{ inputs.env }} | ${{ github.sha }}"
 
 on:
