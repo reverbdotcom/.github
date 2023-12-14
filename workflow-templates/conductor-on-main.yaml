@@ -1,5 +1,13 @@
 # source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/conductor-on-main.yaml
 # Generates a workflow using conductor - triggers continuous delivery on merge to main.
+#
+# ---
+# How to use this template:
+#
+# 1. update where the 'main' branch should deploy to, defaults to production.
+# 2. remove this "how to" comment
+# 3. commit as a PR
+# 4. once merged to main, a new workflow will be generated for the repo.
 
 name: "conductor [ $default-branch ]"
 run-name: "production | ${{ github.sha }}"

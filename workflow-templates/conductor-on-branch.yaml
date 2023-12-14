@@ -1,6 +1,22 @@
 # source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/conductor.yaml
-# Generates a workflow using conductor - triggers a deploy on demand.
-# This workflow will go away in the future, favoring orchestra sandbox. ( ask #dev-platform )
+#   Generates a workflow using conductor - triggers a deploy on demand.
+#   This workflow will go away in the future, favoring orchestra sandbox. ( ask #dev-platform )
+#
+# ---
+# How to use this template:
+#
+# 1. omit from 'options', branches that the repo does not support.
+#
+#     - lab
+#     - infra
+#     - preprod
+#     - qa
+#     - sandbox
+#
+# 2. remove this "how to" comment
+# 3. commit as a PR
+# 4. once merged to main, a new workflow will be generated for the repo.
+
 
 name: "conductor on branch"
 run-name: "${{ inputs.env }} | ${{ github.sha }}"

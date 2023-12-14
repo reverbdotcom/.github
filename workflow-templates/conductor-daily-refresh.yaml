@@ -1,6 +1,21 @@
 # source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/conductor-daily-refresh.yaml
-# Generates a workflow using conductor - triggers a deploy daily at 1AM on week days to refresh environments.
-# This workflow will go away in the future, favoring orchestra sandbox. ( ask #dev-platform )
+#   Generates a workflow using conductor - triggers a deploy daily at 1AM on week days to refresh environments.
+#   This workflow will go away in the future, favoring orchestra sandbox. ( ask #dev-platform )
+#
+# ---
+# How to use this template:
+#
+# 1. omit from 'matrix', branches that the repo does not support.
+#
+#     - lab
+#     - preprod
+#     - qa
+#     - sandbox
+#
+# 2. remove this "how to" comment
+# 3. commit as a PR
+# 4. once merged to main, a new workflow will be generated for the repo.
+
 
 name: "conductor-daily-refresh"
 run-name: "refresh | ${{ github.sha }}"
