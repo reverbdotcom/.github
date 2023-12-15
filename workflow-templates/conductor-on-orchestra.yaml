@@ -16,5 +16,5 @@ on:
       - "sandbox-*"
 
 jobs:
-  delivery:
+  conductor:
     uses: reverbdotcom/conductor/.github/workflows/conductor-orchestra.yaml@main

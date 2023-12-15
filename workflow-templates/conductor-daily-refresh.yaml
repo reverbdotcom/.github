@@ -38,7 +38,7 @@ jobs:
           || true
     outputs:
       hasCommits: ${{ env.hasCommits }}
-  delivery:
+  conductor:
     if: ${{ needs.pre.outputs.hasCommits }}
     uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
     needs:

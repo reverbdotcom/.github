@@ -17,7 +17,7 @@ on:
       - $default-branch
 
 jobs:
-  delivery:
+  conductor:
     uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
     with:
       env: production
