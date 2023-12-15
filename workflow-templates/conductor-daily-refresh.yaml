@@ -17,7 +17,6 @@
 # 4. once merged to main, a new workflow will be generated for the repo.
 
 
-name: "conductor-daily-refresh"
 run-name: "refresh | ${{ github.sha }}"
 
 on:

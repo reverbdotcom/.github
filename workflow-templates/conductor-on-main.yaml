@@ -9,7 +9,6 @@
 # 3. commit as a PR
 # 4. once merged to main, a new workflow will be generated for the repo.
 
-name: "conductor [ $default-branch ]"
 run-name: "production | ${{ github.sha }}"
 
 on:
