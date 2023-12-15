@@ -8,7 +8,6 @@
 # 2. commit as a PR
 # 3. once merged to main, a new workflow will be generated for the repo.
 
-name: "conductor on orchestra"
 run-name: "${{ github.ref_name }} | ${{ github.sha }}"
 
 on:
@@ -17,5 +16,5 @@ on:
       - "sandbox-*"
 
 jobs:
-  delivery:
+  conductor:
     uses: reverbdotcom/conductor/.github/workflows/conductor-orchestra.yaml@main

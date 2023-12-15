@@ -18,7 +18,6 @@
 # 4. once merged to main, a new workflow will be generated for the repo.
 
 
-name: "conductor on branch"
 run-name: "${{ inputs.env }} | ${{ github.sha }}"
 
 on:
@@ -35,7 +34,7 @@ on:
           - sandbox
 
 jobs:
-  delivery:
+  conductor:
     uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
     with:
       env: ${{ inputs.env }}

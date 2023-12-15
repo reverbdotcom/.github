@@ -17,7 +17,6 @@
 # 4. once merged to main, a new workflow will be generated for the repo.
 
 
-name: "conductor-daily-refresh"
 run-name: "refresh | ${{ github.sha }}"
 
 on:
@@ -39,7 +38,7 @@ jobs:
           || true
     outputs:
       hasCommits: ${{ env.hasCommits }}
-  delivery:
+  conductor:
     if: ${{ needs.pre.outputs.hasCommits }}
     uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
     needs:
