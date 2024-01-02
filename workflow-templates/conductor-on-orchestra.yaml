@@ -18,3 +18,4 @@ on:
 jobs:
   conductor:
     uses: reverbdotcom/conductor/.github/workflows/conductor-orchestra.yaml@main
+    secrets: inherit

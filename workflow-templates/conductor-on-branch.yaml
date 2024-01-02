@@ -36,5 +36,6 @@ on:
 jobs:
   conductor:
     uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
+    secrets: inherit
     with:
       env: ${{ inputs.env }}

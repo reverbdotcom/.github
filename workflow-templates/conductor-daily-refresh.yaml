@@ -41,6 +41,7 @@ jobs:
   conductor:
     if: ${{ needs.pre.outputs.hasCommits }}
     uses: reverbdotcom/conductor/.github/workflows/conductor.yaml@main
+    secrets: inherit
     needs:
       - pre
     strategy:
