@@ -15,7 +15,7 @@ run-name: "production | ${{ github.sha }}"
 on:
   push:
     branches:
-      - $default-branch
+      - "main"
 
 jobs:
   conductor:

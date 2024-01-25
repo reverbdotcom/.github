@@ -15,7 +15,7 @@ on:
   push:
     branches:
       - "sandbox-*"
-      - $default-branch
+      - "main"
 
 jobs:
   conductor:
