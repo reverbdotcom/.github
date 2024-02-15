@@ -16,7 +16,7 @@
 # 3. commit as a PR
 # 4. once merged to main, a new workflow will be generated for the repo.
 
-name: "conductor on daily refresh"
+name: ".1 conductor on daily refresh"
 run-name: "refresh | ${{ github.sha }}"
 
 on:
