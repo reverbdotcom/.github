@@ -1,0 +1,6 @@
+{
+    "name": "Conductor on Main [ Container ]",
+    "description": "Continous delivery on merge to main for containers only",
+    "iconName": "octicon issue-reopened",
+    "categories": [ "deployment" ]
+}
