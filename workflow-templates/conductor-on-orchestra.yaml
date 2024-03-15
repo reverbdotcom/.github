@@ -4,9 +4,10 @@
 # ---
 # How to use this template:
 #
-# 1. remove this "how to" comment
-# 2. commit as a PR
-# 3. once merged to main, a new workflow will be generated for the repo.
+# 1. ( optional ) if your chart name differs from your repo name, override with field `appName: <chart name>`.
+# 2. remove this "how to" comment
+# 3. commit as a PR
+# 4. once merged to main, a new workflow will be generated for the repo.
 
 name: ".1 conductor on orchestra"
 run-name: "${{ github.ref_name }} | ${{ github.sha }}"

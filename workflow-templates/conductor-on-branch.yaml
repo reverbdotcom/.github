@@ -12,10 +12,10 @@
 #     - preprod
 #     - qa
 #     - sandbox
-#
-# 2. remove this "how to" comment
-# 3. commit as a PR
-# 4. once merged to main, a new workflow will be generated for the repo.
+# 2. ( optional ) if your chart name differs from your repo name, override with field `appName: <chart name>`.
+# 3. remove this "how to" comment
+# 4. commit as a PR
+# 5. once merged to main, a new workflow will be generated for the repo.
 
 
 name: ".1 conductor on branch"
