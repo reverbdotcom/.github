@@ -52,3 +52,4 @@ jobs:
           - sandbox
     with:
       env: ${{ matrix.env }}
+      jitter: true
