@@ -25,3 +25,4 @@ jobs:
     with:
       env: production
       notify: true
+      automate_irp: true
