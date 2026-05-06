@@ -1,0 +1,72 @@
+# source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/soundcheck-ruby.yaml
+# Generates a Soundcheck CI workflow for Ruby apps and gems without service dependencies.
+#
+# ---
+# How to use this template:
+#
+# 1. Set ruby-image to match your app's Ruby version (e.g. ruby:3.3.0-bookworm)
+# 2. Update lint-command or test-command if your app uses something other than `make soundcheck/*`.
+# 3. Update any instance of appname to your app's name (e.g. reverb-app)
+# 4. (Optional) To run more than one test or lint job, duplicate the `test` job block,
+#    give it a unique root id, keep the name the same (i.e. soundcheck - test), update the run-command, and add it to the `needs` list under
+#    `pr-summary`. See the commented-out `test-integration` example below.
+# 5. Remove this "how to" comment.
+# 6. Commit and push — the workflow just needs to run once so GitHub
+#    registers the check name before you configure branch protection.
+# 7. In Settings → Branches, add all "soundcheck - test/lint" as required checks.
+
+name: ".1 soundcheck"
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: soundcheck - lint
+    uses: reverbdotcom/soundcheck/.github/workflows/lint-ruby.yaml@main
+    with:
+      name: appname
+      ruby-image: ruby:3.2.7-bookworm
+      lint-command: make soundcheck/lint
+      artifact-name: error-log-lint
+    secrets: inherit
+
+  test:
+    name: soundcheck - test
+    uses: reverbdotcom/soundcheck/.github/workflows/test-ruby-rspec.yaml@main
+    with:
+      name: appname
+      test-results-path: tmp/reports/appname/*.json
+      artifact-name: test-results
+      report-name: RSpec Tests
+    secrets: inherit
+
+  # (Optional) Add a second test job by duplicating this block with a unique
+  # root id, keep the name the same (soundcheck - test), and add it to pr-summary needs.
+  # test-integration:
+  #   name: soundcheck - test
+  #   uses: reverbdotcom/soundcheck/.github/workflows/test-ruby-rspec.yaml@main
+  #   with:
+  #     name: integration
+  #     test-results-path: tmp/reports/integration/*.json
+  #     artifact-name: test-results-integration
+  #     report-name: RSpec Integration Tests
+  #   secrets: inherit
+
+  pr-summary:
+    name: soundcheck - reporting
+    if: always()
+    needs:
+      - lint
+      - test
+      # - test-integration  # add any additional test jobs here
+    uses: reverbdotcom/soundcheck/.github/workflows/reporting-pr-summary.yaml@main
+    secrets: inherit
+    with:
+      needs-json: ${{ toJSON(needs) }}
+      branch: ${{ github.head_ref || github.ref_name }}

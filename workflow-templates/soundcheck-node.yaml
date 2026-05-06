@@ -1,0 +1,72 @@
+# source: https://github.com/reverbdotcom/.github/blob/main/workflow-templates/soundcheck-node.yaml
+# Generates a Soundcheck CI workflow for Node.js apps.
+#
+# ---
+# How to use this template:
+#
+# 1. Either update run-commands for lint and test if your commands aren't `make soundcheck/*`, or optionally create make targets if you don't have them already. The commands should run your linters and tests, and exit with a non-zero status if they fail.
+# 2. Update lint-command or run-command if your app uses something other than `make soundcheck/*`.
+# 3. Update any instance of appname to your app's name (e.g. reverb-app).
+# 4. (Optional) To run more than one test or lint job, duplicate the `test` job block,
+#    give it a unique root id, keep the name the same (i.e. soundcheck - test), update the run-command, and add it to the `needs` list under
+#    `pr-summary`. See the commented-out `test-integration` example below.
+# 5. Remove this "how to" comment.
+# 6. Commit and push — the workflow just needs to run once so GitHub
+#    registers the check name before you configure branch protection.
+# 7. In Settings → Branches, add all "soundcheck - test/lint" as required checks.
+
+name: ".1 soundcheck"
+
+on:
+  push:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: soundcheck - lint
+    uses: reverbdotcom/soundcheck/.github/workflows/lint-node.yaml@main
+    with:
+      name: appname
+      run-command: make soundcheck/lint
+      test-results-path: tmp/reports/**/*.xml
+      artifact-name: test-results
+    secrets: inherit
+
+  test:
+    name: soundcheck - test
+    uses: reverbdotcom/soundcheck/.github/workflows/test-node.yaml@main
+    with:
+      name: appname
+      run-command: make soundcheck/test
+      test-results-path: tmp/reports/**/*.xml
+      artifact-name: test-results
+    secrets: inherit
+
+  # (Optional) Add a second test job by duplicating this block with a unique
+  # name, run-command, and artifact-name, then add the job name to pr-summary needs.
+  # test-integration:
+  #   name: soundcheck - test
+  #   uses: reverbdotcom/soundcheck/.github/workflows/test-node.yaml@main
+  #   with:
+  #     name: integration
+  #     run-command: make soundcheck/test-integration
+  #     test-results-path: tmp/reports/**/*.xml
+  #     artifact-name: test-results-integration
+  #   secrets: inherit
+
+  pr-summary:
+    name: soundcheck - reporting
+    if: always()
+    needs:
+      - lint
+      - test
+      # - test-integration  # add any additional test jobs here
+    uses: reverbdotcom/soundcheck/.github/workflows/reporting-pr-summary.yaml@main
+    secrets: inherit
+    with:
+      needs-json: ${{ toJSON(needs) }}
+      branch: ${{ github.head_ref || github.ref_name }}

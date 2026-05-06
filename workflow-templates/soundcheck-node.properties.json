@@ -1,0 +1,6 @@
+{
+    "name": "Soundcheck — Node.js",
+    "description": "Continuous integration workflow for Node.js apps",
+    "iconName": "octicon beaker",
+    "categories": [ "continuous-integration", "testing" ]
+}
