@@ -15,7 +15,7 @@
 #    registers the check name before you configure branch protection.
 # 7. In Settings → Branches, add all "soundcheck - test/lint" as required checks.
 
-name: ".1 soundcheck"
+name: "Soundcheck"
 
 on:
   push:
