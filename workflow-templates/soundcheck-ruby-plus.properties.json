@@ -1,0 +1,6 @@
+{
+    "name": "Soundcheck — Ruby + Services",
+    "description": "Continuous integration workflow for Ruby apps with Postgres and Redis",
+    "iconName": "octicon beaker",
+    "categories": [ "continuous-integration", "testing" ]
+}

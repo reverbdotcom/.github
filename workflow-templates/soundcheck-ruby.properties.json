@@ -1,0 +1,6 @@
+{
+    "name": "Soundcheck — Ruby",
+    "description": "Continuous integration workflow for Ruby apps without service dependencies",
+    "iconName": "octicon beaker",
+    "categories": [ "continuous-integration", "testing" ]
+}
